@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 
-class TokenGenerationVerification {
+class TokenGenerationAndVerification {
     secretKey;
 
     generateSecretKey(){
@@ -29,5 +29,5 @@ class TokenGenerationVerification {
     }
 }
 
-const TOKEN = new TokenGenerationVerification()
+const TOKEN = new TokenGenerationAndVerification()
 module.exports = TOKEN

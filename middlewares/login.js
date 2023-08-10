@@ -17,7 +17,7 @@ const login = () => async (req, res) => {
             })
         }
         else {
-            res.status(401).send("User not found, please reagister")
+            res.status(401).send("User not found, please register")
         }
     }        
     catch(error){
