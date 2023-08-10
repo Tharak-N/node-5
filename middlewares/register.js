@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const TOKEN = require('../token');
-
+ 
 const register = () => async (req, res) => {
     const { name, email, password } = req.body;
     try {
