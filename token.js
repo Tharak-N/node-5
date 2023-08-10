@@ -11,17 +11,27 @@ class TokenGenerationAndVerification {
 
     generateToken(_payload){
         this.generateSecretKey();
-        const JWT_TOKEN = jwt.sign(
-            _payload,
-            this.secretKey,
-            { expiresIn: "2h" }
-        )
-        return JWT_TOKEN
+        try {
+            const JWT_TOKEN = jwt.sign(
+                _payload,
+                this.secretKey,
+                { expiresIn: "2h" }
+            )
+            return JWT_TOKEN
+        }
+        catch(error) {
+            throw new Error(error)
+        }
     }
 
     verify(token){
-        let _payload = jwt.verify(token, this.secretKey)
-        return _payload
+        try {
+            let _payload = jwt.verify(token, this.secretKey)
+            return _payload
+        }
+        catch(error){
+            throw new Error(error)
+        }
     }
 
     getSecretKey(){
