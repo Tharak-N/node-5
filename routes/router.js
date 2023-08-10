@@ -1,9 +1,6 @@
 const express = require('express')
-/**Middleware Imports */
-const login = require('../middlewares/login')
-const register = require('../middlewares/register')
-const authorization = require('../middlewares/authorization')
-const home = require('../middlewares/home')
+
+const middlewares = require('../middlewares/index')
 
 const router = express.Router()
 
@@ -11,9 +8,9 @@ router
 .get('/', (req, res) => {
     res.send("Hola!")
 })
-.post('/login', login())
-.post('/register', register())
-.use(authorization())
-.get('/home', home())
+.post('/login', middlewares.login())
+.post('/register', middlewares.register())
+.use(middlewares.authorization())
+.get('/home', middlewares.home())
 
 module.exports = router;
