@@ -4,10 +4,11 @@ const TOKEN = require('../token')
 
 const login = () => async (req, res) => {
     const { email, password } = req.body;
+    if(!(email && password)) req.status(400).send("Email and Password Fields are required")
     try {
         let existedUser = await User.findOne({ email, password })
         if(!!existedUser){
-            let JWT = TOKEN.generateToken({
+            const JWT = TOKEN.generateToken({
                 name: existedUser.name,
                 email: existedUser.email
             }) 
@@ -21,7 +22,7 @@ const login = () => async (req, res) => {
         }
     }        
     catch(error){
-        throw new Error("Error while connecting to DB")
+        throw new Error(error)
     }
 
 }
